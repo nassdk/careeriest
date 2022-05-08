@@ -2,9 +2,6 @@ package com.nassdk.careeriest.ui.theme
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import com.nassdk.careeriest.ui.theme.*
-import com.nassdk.careeriest.ui.theme.DarkPalette
-import com.nassdk.careeriest.ui.theme.LightPalette
 
 @Composable
 fun StTheme(
@@ -21,6 +18,7 @@ fun StTheme(
         LocalAeroColors provides colors,
         LocalStTypography provides typography,
         LocalStDimens provides StDimens(),
+        LocalStShapes provides shapes,
         content = content
     )
 }

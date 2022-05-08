@@ -15,6 +15,10 @@ object StTheme {
     val dimens: StDimens
         @Composable
         get() = LocalStDimens.current
+
+    val shapes: StShapes
+        @Composable
+        get() = LocalStShapes.current
 }
 
 val LocalAeroColors = staticCompositionLocalOf<StColors> {
@@ -27,4 +31,8 @@ val LocalStTypography = staticCompositionLocalOf<StTypography> {
 
 val LocalStDimens = staticCompositionLocalOf<StDimens> {
     error("No dimens provided")
+}
+
+val LocalStShapes = staticCompositionLocalOf<StShapes> {
+    error("No shapes provided")
 }
