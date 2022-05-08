@@ -18,7 +18,6 @@ data class StColors(
 )
 
 val White = Color(0xFFFFFFFF)
-val Black = Color(0xFF000000)
 val Black_181A1F = Color(0xFF181A1F)
 val Black_434856 = Color(0xFF434856)
 val Black_6F7890 = Color(0xFF6F7890)
@@ -28,7 +27,7 @@ val Blue = Color(0xFF1C58F2)
 internal val DarkPalette = StColors(
     primaryBackgroundColor = White_F5F7FC,
     secondaryBackgroundColor = White,
-    thirdlyBackgroundColor = Blue,
+    thirdlyBackgroundColor = Black_434856,
     primaryTextColor = Black_181A1F,
     secondaryTextColor = Black_434856,
     thirdlyTextColor = Black_6F7890,
@@ -37,7 +36,7 @@ internal val DarkPalette = StColors(
     primaryButtonColor = Blue,
     secondaryButtonColor = White,
     primaryButtonTextColor = White,
-    secondaryButtonTextColor = Blue
+    secondaryButtonTextColor = Black_434856
 )
 
 internal val LightPalette = StColors(
