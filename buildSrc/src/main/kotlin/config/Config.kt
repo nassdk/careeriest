@@ -7,4 +7,5 @@ object Config {
     const val versionName = "1.0"
     const val versionCode = 1
     const val buildToolsVersion = "30.0.3"
+    const val applicationId = "com.nassdk.careeriest"
 }

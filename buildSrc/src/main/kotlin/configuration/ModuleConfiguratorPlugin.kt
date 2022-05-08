@@ -8,28 +8,42 @@ internal class ModuleConfiguratorPlugin : Plugin<Project> {
 
     private val featureModuleConfigurators by lazy {
         arrayOf(
-            AndroidFeatureModuleConfigurator(),
+            AndroidModuleConfigurator(),
             DependenciesConfigurator()
         )
     }
 
-    override fun apply(target: Project) {
+    private val coreModulesConfigurator by lazy {
+        arrayOf(AndroidModuleConfigurator())
+    }
 
-        target.logger.debug("Configuring ${target.name} module")
+    override fun apply(target: Project) = with(target) {
 
-        if (target.name !in ignoreModules) {
-            configureFeatureModule(project = target)
+        target.logger.debug("Configuring $name module")
+
+        when (name) {
+            in ignoreModules      -> return
+            in coreAndroidModules -> configureCoreAndroidModule()
+            else                  -> configureFeatureModule()
         }
     }
 
-    private fun configureFeatureModule(project: Project) {
+    private fun Project.configureFeatureModule() {
 
         featureModuleConfigurators.forEach { configurator ->
-            configurator.configure(project = project)
+            configurator.configure(project = this)
+        }
+    }
+
+    private fun Project.configureCoreAndroidModule() {
+
+        coreModulesConfigurator.forEach { configurator ->
+            configurator.configure(project = this)
         }
     }
 
     private companion object {
-        private val ignoreModules = arrayOf("careeriest", "app", "buildSrc")
+        private val ignoreModules = arrayOf("careeriest", "app", "buildSrc", "core", "feature")
+        private val coreAndroidModules = arrayOf("ui", "common")
     }
 }
