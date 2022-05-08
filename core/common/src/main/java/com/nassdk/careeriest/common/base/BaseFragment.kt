@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
 import com.nassdk.careeriest.ui.theme.StTheme
 
@@ -31,6 +32,11 @@ abstract class BaseFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View = ComposeView(context = requireContext()).apply {
+
+        setViewCompositionStrategy(
+            ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed
+        )
+
         setContent(
             content = {
                 StTheme(
