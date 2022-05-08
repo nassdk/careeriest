@@ -7,20 +7,17 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.nassdk.careeriest.common.base.BaseFragment
+import com.nassdk.careeriest.ui.kit.ButtonStyle
+import com.nassdk.careeriest.ui.kit.STTextButton
 import com.nassdk.careeriest.ui.theme.StTheme
 
 internal class SplashFragment : BaseFragment() {
@@ -75,13 +72,13 @@ internal class SplashFragment : BaseFragment() {
                         )
                 )
 
-                Button(
+                STTextButton(
                     onClick = {},
-                    colors = ButtonDefaults.buttonColors(backgroundColor = StTheme.colors.secondaryButtonColor),
-                    shape = RoundedCornerShape(size = 12.dp),
+                    titleRes = R.string.slpash_start_browsing_button_title,
+                    style = ButtonStyle.SECONDARY,
                     modifier = Modifier
                         .padding(bottom = StTheme.dimens.dp24)
-                        .height(height = 52.dp)
+                        .height(height = StTheme.dimens.dp52)
                         .constrainAs(
                             ref = button,
                             constrainBlock = {
@@ -90,17 +87,6 @@ internal class SplashFragment : BaseFragment() {
                                 bottom.linkTo(anchor = parent.bottom)
                             }
                         ),
-                    content = {
-                        Text(
-                            text = stringResource(id = R.string.slpash_start_browsing_button_title).uppercase(),
-                            style = StTheme.typography.buttonBold15,
-                            textAlign = TextAlign.Center,
-                            color = StTheme.colors.secondaryButtonTextColor,
-                            modifier = Modifier
-                                .align(alignment = Alignment.CenterVertically)
-                                .padding(horizontal = StTheme.dimens.dp28)
-                        )
-                    }
                 )
             }
         )

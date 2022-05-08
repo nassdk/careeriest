@@ -12,6 +12,7 @@ data class StDimens(
     val dp16: Dp = 16.dp,
     val dp24: Dp = 24.dp,
     val dp28: Dp = 28.dp,
+    val dp52: Dp = 52.dp,
     val sp4: TextUnit = 4.sp,
     val sp8: TextUnit = 8.sp,
     val sp12: TextUnit = 12.sp,
