@@ -3,13 +3,12 @@ package configuration
 import com.android.build.gradle.BaseExtension
 import config.Config
 import config.Plugins
-import config.Version
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-internal class AndroidModuleConfigurator : ProjectConfigurator {
+internal class CoreModuleConfigurator : ProjectConfigurator {
 
     override fun configure(project: Project) = with(project) {
         configurePlugins()
@@ -19,7 +18,6 @@ internal class AndroidModuleConfigurator : ProjectConfigurator {
     private fun Project.configurePlugins() = with(plugins) {
         apply(Plugins.android)
         apply(Plugins.ktAndroid)
-        apply(Plugins.parcelize)
         apply(Plugins.kapt)
     }
 
@@ -29,8 +27,6 @@ internal class AndroidModuleConfigurator : ProjectConfigurator {
             configureDefaultConfig(moduleName = name)
             configureCompileOptions()
             configureKotlinOptions()
-            configureBuildFeatures()
-            configureComposeOptions()
         } ?: project.logger.error("Failed to configure android settings for $name module")
     }
 
@@ -53,16 +49,6 @@ internal class AndroidModuleConfigurator : ProjectConfigurator {
             sourceCompatibility = JavaVersion.VERSION_1_8
             targetCompatibility = JavaVersion.VERSION_1_8
         }
-    }
-
-    private fun BaseExtension.configureComposeOptions() {
-        composeOptions {
-            kotlinCompilerExtensionVersion = Version.composeCore
-        }
-    }
-
-    private fun BaseExtension.configureBuildFeatures() {
-        buildFeatures.compose = true
     }
 
     private fun Project.configureKotlinOptions() {

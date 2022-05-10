@@ -8,13 +8,13 @@ internal class ModuleConfiguratorPlugin : Plugin<Project> {
 
     private val featureModuleConfigurators by lazy {
         arrayOf(
-            AndroidModuleConfigurator(),
+            FeatureModuleConfigurator(),
             DependenciesConfigurator()
         )
     }
 
     private val coreModulesConfigurator by lazy {
-        arrayOf(AndroidModuleConfigurator())
+        arrayOf(CoreModuleConfigurator())
     }
 
     override fun apply(target: Project) = with(target) {
@@ -44,6 +44,6 @@ internal class ModuleConfiguratorPlugin : Plugin<Project> {
 
     private companion object {
         private val ignoreModules = arrayOf("careeriest", "app", "buildSrc", "core", "feature")
-        private val coreAndroidModules = arrayOf("ui", "common")
+        private val coreAndroidModules = arrayOf("ui", "common", "network")
     }
 }
