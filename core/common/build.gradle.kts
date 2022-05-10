@@ -1,3 +1,13 @@
+android {
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = config.Version.composeCore
+    }
+}
+
 dependencies {
     implementation(dependencyNotation = config.Deps.Compose.ui)
     implementation(dependencyNotation = config.Deps.Compose.foundation)
@@ -12,4 +22,5 @@ dependencies {
     kapt(dependencyNotation = config.Deps.daggerCompiler)
 
     implementation(dependencyNotation = project(path = ":core:ui"))
+    implementation(dependencyNotation = project(path = ":core:network"))
 }
