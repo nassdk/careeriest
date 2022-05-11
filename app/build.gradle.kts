@@ -5,6 +5,7 @@ import config.Version
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    kotlin(module = "kapt")
 }
 
 android {
@@ -56,13 +57,18 @@ android {
 dependencies {
     implementation(dependencyNotation = project(path = ":feature:splash"))
     implementation(dependencyNotation = project(path = ":core:ui"))
+    implementation(dependencyNotation = project(path = ":core:common"))
 
     implementation(dependencyNotation = Deps.fragment)
     implementation(dependencyNotation = Deps.navigationFragment)
     implementation(dependencyNotation = Deps.navigationUi)
     implementation(dependencyNotation = Deps.coreKtx)
     implementation(dependencyNotation = Deps.appCompat)
+    implementation(dependencyNotation = Deps.timber)
 
     implementation(dependencyNotation = Deps.Compose.material)
     implementation(dependencyNotation = Deps.Compose.activity)
+
+    implementation(dependencyNotation = Deps.dagger)
+    kapt(dependencyNotation = Deps.daggerCompiler)
 }
