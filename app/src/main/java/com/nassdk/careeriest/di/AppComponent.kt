@@ -1,16 +1,18 @@
 package com.nassdk.careeriest.di
 
+import android.content.Context
 import com.nassdk.careeriest.AppActivity
-import com.nassdk.careeriest.common.di.BaseComponent
+import dagger.BindsInstance
 import dagger.Component
+import javax.inject.Singleton
 
-@Component(modules = [AppModule::class], dependencies = [BaseComponent::class])
-@AppScope
-interface AppComponent : BaseComponent {
+@Component(modules = [AppModule::class])
+@Singleton
+interface AppComponent {
 
     @Component.Factory
     interface Factory {
-        fun create(baseComponent: BaseComponent): AppComponent
+        fun create(@BindsInstance context: Context): AppComponent
     }
 
     fun inject(activity: AppActivity)

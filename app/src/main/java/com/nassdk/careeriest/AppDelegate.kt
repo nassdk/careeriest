@@ -1,10 +1,9 @@
 package com.nassdk.careeriest
 
-import com.nassdk.careeriest.common.base.BaseApplication
-import com.nassdk.careeriest.di.DaggerAppComponent
+import android.app.Application
 import timber.log.Timber
 
-class AppDelegate : BaseApplication() {
+class AppDelegate : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -14,7 +13,7 @@ class AppDelegate : BaseApplication() {
     }
 
     private fun initAppComponent() {
-        AppComponentHolder.init(baseComponent = baseComponent)
+        AppComponentHolder.init(context = this)
     }
 
     private fun initTimber() {
