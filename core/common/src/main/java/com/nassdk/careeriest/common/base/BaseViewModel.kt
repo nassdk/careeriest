@@ -2,6 +2,10 @@ package com.nassdk.careeriest.common.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.nassdk.careeriest.common.coroutines.CoroutinesDispatcherProvider
+import com.nassdk.careeriest.common.coroutines.error.CoroutineErrorHandler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -9,15 +13,19 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 abstract class BaseViewModel<
-        STATE : BaseViewState,
-        EVENT : BaseViewEvent,
-        COMMAND : BaseVMCommand> : ViewModel() {
+        STATE : BaseScreenState,
+        EVENT : BaseScreenEvent,
+        COMMAND : BaseVMCommand>(
+    private val dispatcherProvider: CoroutinesDispatcherProvider = CoroutinesDispatcherProvider()
+) : ViewModel() {
 
     protected abstract val initialState: STATE
 
-    private val _viewState by lazy {
+    protected val _viewState by lazy {
         MutableStateFlow(initialState)
     }
 
@@ -52,5 +60,22 @@ abstract class BaseViewModel<
 
     protected fun sendCommand(command: COMMAND) {
         _commands.tryEmit(value = command)
+    }
+
+    protected fun launchCoroutine(
+        body: suspend CoroutineScope.() -> Unit,
+    ): Job = viewModelScope.launch(
+        context = CoroutineErrorHandler(),
+        block = {
+            body()
+        }
+    )
+
+    protected fun launchIOCoroutine(
+        body: suspend CoroutineScope.() -> Unit,
+    ): Job = launchCoroutine {
+        withContext(dispatcherProvider.io) {
+            body()
+        }
     }
 }

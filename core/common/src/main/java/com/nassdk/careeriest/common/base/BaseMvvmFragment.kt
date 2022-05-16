@@ -1,8 +1,8 @@
 package com.nassdk.careeriest.common.base
 
 abstract class BaseMvvmFragment<
-        STATE : BaseViewState,
-        EVENT : BaseViewEvent,
+        STATE : BaseScreenState,
+        EVENT : BaseScreenEvent,
         COMMAND : BaseVMCommand,
         VM : BaseViewModel<STATE, EVENT, COMMAND>
         > : BaseFragment() {

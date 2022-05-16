@@ -1,3 +1,3 @@
 package com.nassdk.careeriest.common.base
 
-interface BaseViewState
+interface BaseScreenState
