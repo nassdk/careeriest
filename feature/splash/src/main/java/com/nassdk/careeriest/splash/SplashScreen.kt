@@ -15,12 +15,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.nassdk.careeriest.common.base.BaseFragment
+import com.nassdk.careeriest.common.base.BaseScreen
 import com.nassdk.careeriest.ui.kit.ButtonStyle
 import com.nassdk.careeriest.ui.kit.STTextButton
 import com.nassdk.careeriest.ui.theme.StTheme
 
-internal class SplashFragment : BaseFragment() {
+internal class SplashScreen : BaseScreen() {
 
     @Composable
     override fun ScreenContent() {

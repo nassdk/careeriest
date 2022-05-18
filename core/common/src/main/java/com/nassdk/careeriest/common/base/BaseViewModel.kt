@@ -25,11 +25,11 @@ abstract class BaseViewModel<
 
     protected abstract val initialState: STATE
 
-    protected val _viewState by lazy {
+    protected val _screenState by lazy {
         MutableStateFlow(initialState)
     }
 
-    private val viewEventsSharedFlow = MutableSharedFlow<EVENT>(
+    private val screenEventsSharedFlow = MutableSharedFlow<EVENT>(
         replay = 1,
         onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
@@ -40,20 +40,17 @@ abstract class BaseViewModel<
     )
 
     init {
-        viewEventsSharedFlow.onEach(::handleViewEvent).launchIn(viewModelScope)
+        screenEventsSharedFlow.onEach(::handleViewEvent).launchIn(viewModelScope)
     }
 
-    val commands: SharedFlow<COMMAND>
+    internal val commands: SharedFlow<COMMAND>
         get() = _commands
 
-    val viewState: StateFlow<STATE>
-        get() = _viewState
-
-    val viewStateData: STATE
-        get() = _viewState.value
+    val screenState: StateFlow<STATE>
+        get() = _screenState
 
     fun performViewEvent(event: EVENT) {
-        viewEventsSharedFlow.tryEmit(value = event)
+        screenEventsSharedFlow.tryEmit(value = event)
     }
 
     protected open fun handleViewEvent(event: EVENT) = Unit
@@ -64,18 +61,13 @@ abstract class BaseViewModel<
 
     protected fun launchCoroutine(
         body: suspend CoroutineScope.() -> Unit,
-    ): Job = viewModelScope.launch(
-        context = CoroutineErrorHandler(),
-        block = {
-            body()
-        }
-    )
+    ): Job = viewModelScope.launch(context = CoroutineErrorHandler(), block = body)
 
     protected fun launchIOCoroutine(
         body: suspend CoroutineScope.() -> Unit,
-    ): Job = launchCoroutine {
-        withContext(dispatcherProvider.io) {
-            body()
+    ): Job = launchCoroutine(
+        body = {
+            withContext(context = dispatcherProvider.io, block = body)
         }
-    }
+    )
 }

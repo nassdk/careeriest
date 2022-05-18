@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/splash"
-        android:name="com.nassdk.careeriest.splash.SplashFragment"
+        android:name="com.nassdk.careeriest.splash.SplashScreen"
         android:label="SplashFragment" />
 
 </navigation>
