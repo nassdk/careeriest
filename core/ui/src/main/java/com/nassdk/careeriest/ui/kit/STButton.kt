@@ -23,11 +23,7 @@ fun STTextButton(
 
     Button(
         onClick = onClick,
-        colors = ButtonDefaults.buttonColors(
-            backgroundColor = ButtonStyle.getBackgroundColor(
-                type = style
-            )
-        ),
+        colors = ButtonDefaults.buttonColors(backgroundColor = style.getBackgroundColor()),
         shape = StTheme.shapes.primaryButtonShape,
         modifier = modifier,
         content = {
@@ -35,7 +31,7 @@ fun STTextButton(
                 text = stringResource(id = titleRes).uppercase(),
                 style = StTheme.typography.buttonBold15,
                 textAlign = TextAlign.Center,
-                color = ButtonStyle.getTextColor(type = style),
+                color = style.getTextColor(),
                 modifier = Modifier
                     .align(alignment = Alignment.CenterVertically)
                     .padding(horizontal = StTheme.dimens.dp28)
@@ -47,25 +43,22 @@ fun STTextButton(
 enum class ButtonStyle {
     PRIMARY,
     SECONDARY;
+}
 
-    internal companion object {
+@Composable
+internal fun ButtonStyle.getBackgroundColor(): Color {
+    return if (this == ButtonStyle.PRIMARY) {
+        StTheme.colors.primaryButtonColor
+    } else {
+        StTheme.colors.secondaryButtonColor
+    }
+}
 
-        @Composable
-        fun getBackgroundColor(type: ButtonStyle): Color {
-            return if (type == PRIMARY) {
-                StTheme.colors.primaryButtonColor
-            } else {
-                StTheme.colors.secondaryButtonColor
-            }
-        }
-
-        @Composable
-        fun getTextColor(type: ButtonStyle): Color {
-            return if (type == PRIMARY) {
-                StTheme.colors.primaryButtonTextColor
-            } else {
-                StTheme.colors.secondaryButtonTextColor
-            }
-        }
+@Composable
+internal fun ButtonStyle.getTextColor(): Color {
+    return if (this == ButtonStyle.PRIMARY) {
+        StTheme.colors.primaryButtonTextColor
+    } else {
+        StTheme.colors.secondaryButtonTextColor
     }
 }
