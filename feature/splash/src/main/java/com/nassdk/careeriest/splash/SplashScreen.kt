@@ -2,17 +2,23 @@ package com.nassdk.careeriest.splash
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.nassdk.careeriest.common.base.BaseScreen
@@ -38,7 +44,25 @@ internal class SplashScreen : BaseScreen() {
                 .background(color = StTheme.colors.thirdlyBackgroundColor),
             content = {
 
-                val (image, title, button) = createRefs()
+                val (image, title, button, grad) = createRefs()
+
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(height = imageBackgroundGradientHeight)
+                        .clip(shape = RoundedCornerShape(size = StTheme.dimens.dp12))
+                        .background(brush = imageBackgroundBrush)
+                        .constrainAs(
+                            ref = grad,
+                            constrainBlock = {
+                                start.linkTo(anchor = image.start)
+                                end.linkTo(anchor = image.end)
+                                top.linkTo(anchor = image.top)
+                                bottom.linkTo(anchor = image.bottom)
+                            }
+
+                        )
+                )
 
                 Image(
                     painter = painterResource(id = R.drawable.iv_saly_climb),
@@ -89,6 +113,18 @@ internal class SplashScreen : BaseScreen() {
                         ),
                 )
             }
+        )
+    }
+
+
+    private companion object {
+
+        private val imageBackgroundGradientHeight = 300.dp
+        private val imageBackgroundBrush = Brush.radialGradient(
+            colors = listOf(
+                Color(0x99FFFFFF),
+                Color(0x00000000)
+            )
         )
     }
 }
