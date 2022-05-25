@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -31,6 +32,7 @@ internal class SplashScreen : BaseScreen() {
     @Composable
     override fun ScreenContent() {
 
+        val configuration = LocalConfiguration.current
         val systemUiColor = rememberSystemUiController()
 
         with(systemUiColor) {
@@ -69,6 +71,7 @@ internal class SplashScreen : BaseScreen() {
                     contentDescription = stringResource(id = R.string.splash_image_content_description),
                     modifier = Modifier
                         .fillMaxWidth()
+                        .height(height = (configuration.screenHeightDp * imageHeightMultiplier).dp)
                         .constrainAs(
                             ref = image,
                             constrainBlock = {
@@ -119,6 +122,7 @@ internal class SplashScreen : BaseScreen() {
 
     private companion object {
 
+        private const val imageHeightMultiplier = 0.65f
         private val imageBackgroundGradientHeight = 300.dp
         private val imageBackgroundBrush = Brush.radialGradient(
             colors = listOf(
