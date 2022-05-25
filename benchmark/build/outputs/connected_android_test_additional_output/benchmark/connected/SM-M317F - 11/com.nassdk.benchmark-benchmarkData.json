@@ -1,0 +1,42 @@
+{
+    "context": {
+        "build": {
+            "brand": "samsung",
+            "device": "m31s",
+            "fingerprint": "samsung/m31snsser/m31s:11/RP1A.200720.012/M317FXXU3CUJ3:user/release-keys",
+            "model": "SM-M317F",
+            "version": {
+                "sdk": 30
+            }
+        },
+        "cpuCoreCount": 8,
+        "cpuLocked": false,
+        "cpuMaxFreqHz": 2314000000,
+        "memTotalBytes": 5844811776,
+        "sustainedPerformanceModeEnabled": false
+    },
+    "benchmarks": [
+        {
+            "name": "startup",
+            "params": {},
+            "className": "com.nassdk.benchmark.StartUpBenchmark",
+            "totalRunTimeNs": 48764794465,
+            "metrics": {
+                "timeToInitialDisplayMs": {
+                    "minimum": 467.625654,
+                    "maximum": 474.848923,
+                    "median": 474.494846,
+                    "runs": [
+                        474.848923,
+                        474.494846,
+                        467.625654
+                    ]
+                }
+            },
+            "sampledMetrics": {},
+            "warmupIterations": 0,
+            "repeatIterations": 3,
+            "thermalThrottleSleepSeconds": 0
+        }
+    ]
+}

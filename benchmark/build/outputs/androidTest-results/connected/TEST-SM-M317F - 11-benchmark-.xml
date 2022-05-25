@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.nassdk.benchmark.StartUpBenchmark" tests="1" failures="0" errors="0" skipped="0" time="50.655" timestamp="2022-05-25T15:05:30" hostname="localhost">
+  <properties>
+    <property name="device" value="SM-M317F - 11" />
+    <property name="flavor" value="" />
+    <property name="project" value="benchmark" />
+  </properties>
+  <testcase name="startup" classname="com.nassdk.benchmark.StartUpBenchmark" time="49.975" />
+</testsuite>

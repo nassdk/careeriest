@@ -28,12 +28,22 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
+
+        debug {
+            isMinifyEnabled = false
+        }
+
+        create("benchmark") {
+            signingConfig = signingConfigs.getByName("debug")
+            isDebuggable = false
+        }
+
     }
 
     compileOptions {
@@ -58,6 +68,7 @@ dependencies {
     implementation(dependencyNotation = project(path = ":feature:splash"))
     implementation(dependencyNotation = project(path = ":core:ui"))
     implementation(dependencyNotation = project(path = ":core:common"))
+    implementation(dependencyNotation = project(path = ":core:navigation"))
 
     implementation(dependencyNotation = Deps.fragment)
     implementation(dependencyNotation = Deps.navigationFragment)

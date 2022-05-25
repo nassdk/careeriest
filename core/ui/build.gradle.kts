@@ -14,4 +14,5 @@ dependencies {
     implementation(dependencyNotation = config.Deps.Compose.ui)
     implementation(dependencyNotation = config.Deps.Compose.foundation)
     implementation(dependencyNotation = config.Deps.Compose.tooling)
+    implementation(dependencyNotation = config.Deps.fragment)
 }

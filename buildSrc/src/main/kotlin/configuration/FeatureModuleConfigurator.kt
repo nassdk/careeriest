@@ -27,6 +27,7 @@ internal class FeatureModuleConfigurator : ProjectConfigurator {
 
         (extensions.getByName("android") as? BaseExtension)?.apply {
             configureDefaultConfig(moduleName = name)
+            configureBuildConfigs()
             configureCompileOptions()
             configureKotlinOptions()
             configureBuildFeatures()
@@ -45,6 +46,28 @@ internal class FeatureModuleConfigurator : ProjectConfigurator {
 
             testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
             consumerProguardFiles("consumer-rules.pro")
+        }
+    }
+
+    private fun BaseExtension.configureBuildConfigs() {
+        buildTypes {
+
+            getByName("release") {
+                isMinifyEnabled = true
+                proguardFiles(
+                    getDefaultProguardFile("proguard-android-optimize.txt"),
+                    "proguard-rules.pro"
+                )
+            }
+
+            getByName("debug") {
+                isMinifyEnabled = false
+            }
+
+            create("benchmark") {
+                signingConfig = signingConfigs.getByName("debug")
+                isDebuggable = false
+            }
         }
     }
 

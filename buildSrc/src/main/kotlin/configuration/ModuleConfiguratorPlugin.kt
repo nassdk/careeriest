@@ -43,7 +43,7 @@ internal class ModuleConfiguratorPlugin : Plugin<Project> {
     }
 
     private companion object {
-        private val ignoreModules = arrayOf("careeriest", "app", "buildSrc", "core", "feature")
-        private val coreAndroidModules = arrayOf("ui", "common", "network")
+        private val ignoreModules = arrayOf("careeriest", "app", "buildSrc", "core", "feature", "benchmark")
+        private val coreAndroidModules = arrayOf("ui", "common", "network", "navigation")
     }
 }
