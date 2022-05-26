@@ -32,6 +32,9 @@ internal class DependenciesConfigurator : ProjectConfigurator {
 
         implementModule(modulePath = ":core:ui")
         implementModule(modulePath = ":core:common")
+        implementModule(modulePath = ":core:navigation")
+        implementModule(modulePath = ":core:network")
+        implementModule(modulePath = ":core:di")
     }
 
     private fun Project.implementModule(modulePath: String) {
