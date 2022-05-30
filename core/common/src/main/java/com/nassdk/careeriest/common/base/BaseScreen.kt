@@ -9,10 +9,9 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
-import androidx.fragment.app.Fragment
 import com.nassdk.careeriest.ui.theme.StTheme
 
-abstract class BaseScreen : Fragment() {
+abstract class BaseScreen : BaseFragment() {
 
     @Composable
     abstract fun ScreenContent()

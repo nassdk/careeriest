@@ -7,11 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.nassdk.careeriest.common.extensions.collect
@@ -21,12 +19,12 @@ abstract class BaseVmScreen<
         STATE : BaseScreenState,
         EVENT : BaseScreenEvent,
         COMMAND : BaseVMCommand
-        > : Fragment() {
+        > : BaseFragment() {
 
     abstract val viewModel: BaseViewModel<STATE, EVENT, COMMAND>
 
     @Composable
-    abstract fun ScreenContent(screenState: State<STATE>)
+    abstract fun ScreenContent(screenState: STATE)
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -52,7 +50,7 @@ abstract class BaseVmScreen<
             content = {
                 StTheme(
                     darkTheme = isSystemInDarkTheme(),
-                    content = { ScreenContent(screenState = viewModel.screenState.collectAsState()) }
+                    content = { ScreenContent(screenState = viewModel.screenState.collectAsState().value) }
                 )
             }
         )
