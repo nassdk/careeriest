@@ -66,7 +66,6 @@ android {
 }
 
 dependencies {
-    implementation(dependencyNotation = project(path = ":feature:splash"))
     implementation(dependencyNotation = project(path = ":core:ui"))
     implementation(dependencyNotation = project(path = ":core:common"))
     implementation(dependencyNotation = project(path = ":core:navigation"))
@@ -83,4 +82,28 @@ dependencies {
 
     implementation(dependencyNotation = Deps.dagger)
     kapt(dependencyNotation = Deps.daggerCompiler)
+
+    implementation(dependencyNotation = Deps.fragment)
+    implementation(dependencyNotation = Deps.navigationFragment)
+    implementation(dependencyNotation = Deps.navigationUi)
+    implementation(dependencyNotation = Deps.coreKtx)
+    implementation(dependencyNotation = Deps.appCompat)
+    implementation(dependencyNotation = Deps.timber)
+
+    implementation(dependencyNotation = Deps.Compose.material)
+    implementation(dependencyNotation = Deps.Compose.activity)
+
+    implementation(dependencyNotation = Deps.dagger)
+    kapt(dependencyNotation = Deps.daggerCompiler)
+
+    File("$rootDir/feature").listFiles()
+        ?.filter { it.isDirectory }
+        ?.forEach { module ->
+            val moduleName = module.name
+            val gradleFileKts = File("${module.absolutePath}/build.gradle.kts")
+            // Если в директории есть файл build.gradle, то это модуль
+            if (gradleFileKts.exists()) {
+                implementation(project(":feature:$moduleName"))
+            }
+        }
 }
