@@ -13,6 +13,7 @@ buildscript {
         classpath(dependencyNotation = config.ClasspathDeps.gradle)
         classpath(dependencyNotation = config.ClasspathDeps.kotlin)
         classpath(dependencyNotation = config.ClasspathDeps.serialization)
+        classpath(dependencyNotation = config.ClasspathDeps.safeArgs)
     }
 }
 

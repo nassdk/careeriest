@@ -21,6 +21,7 @@ internal class FeatureModuleConfigurator : ProjectConfigurator {
         apply(Plugins.ktAndroid)
         apply(Plugins.parcelize)
         apply(Plugins.kapt)
+        apply(Plugins.safeArgs)
     }
 
     private fun Project.configureAndroidSettings() {
