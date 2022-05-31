@@ -15,6 +15,8 @@ internal class DependenciesConfigurator : ProjectConfigurator {
         implementDependency(dependency = Deps.timber)
         implementDependency(dependency = Deps.coroutinesAndroid)
         implementDependency(dependency = Deps.coroutinesCore)
+        implementDependency(dependency = Deps.navigationFragment)
+        implementDependency(dependency = Deps.navigationUi)
 
         implementDependency(dependency = Deps.Network.retrofit)
         implementDependency(dependency = Deps.Network.serializationJson)
