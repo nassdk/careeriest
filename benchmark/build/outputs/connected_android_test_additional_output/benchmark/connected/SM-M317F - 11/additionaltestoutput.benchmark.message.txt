@@ -1,3 +1,0 @@
-StartUpBenchmark_startup
-timeToInitialDisplayMs   [min 467,6](file://StartUpBenchmark_startup_iter002_2022-05-25-15-08-26.perfetto-trace),   [median 474,5](file://StartUpBenchmark_startup_iter001_2022-05-25-15-08-21.perfetto-trace),   [max 474,8](file://StartUpBenchmark_startup_iter000_2022-05-25-15-08-17.perfetto-trace)
-Traces: Iteration [0](file://StartUpBenchmark_startup_iter000_2022-05-25-15-08-17.perfetto-trace) [1](file://StartUpBenchmark_startup_iter001_2022-05-25-15-08-21.perfetto-trace) [2](file://StartUpBenchmark_startup_iter002_2022-05-25-15-08-26.perfetto-trace)
